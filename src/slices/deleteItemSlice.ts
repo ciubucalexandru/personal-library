@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface DeleteItemSlice {
-  id: string | null;
+  id: number | null;
   isVisible: boolean;
   isLoading: boolean;
 }
@@ -17,7 +17,7 @@ export const deleteItemSlice = createSlice({
   name: 'deleteItem',
   initialState,
   reducers: {
-    setDeleteId: (state, action: PayloadAction<string | null>) => {
+    setDeleteId: (state, action: PayloadAction<number | null>) => {
       state.id = action.payload;
     },
     setIsDeleteLoading: (state, action: PayloadAction<boolean>) => {

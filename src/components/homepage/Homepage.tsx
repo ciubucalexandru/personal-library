@@ -31,7 +31,7 @@ const Homepage: React.FC = () => {
   return (
     <>
       <TopBar />
-      <AddBookModal />
+      <AddBookModal mutate={mutate} />
       <DeleteItemModal />
       <Container className={classes.root}>
         <Grid container spacing={2}>

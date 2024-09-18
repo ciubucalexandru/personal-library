@@ -32,6 +32,10 @@ const useStyles = makeStyles((theme: any) => ({
   },
 }));
 
+interface Props {
+  mutate: () => void;
+}
+
 const addBookValidationSchema = yup.object({
   name: yup
     .string()
@@ -57,7 +61,7 @@ const initialValues: Partial<Book> = {
   genres: '',
 };
 
-const AddBookModal: React.FC = () => {
+const AddBookModal: React.FC<Props> = ({ mutate }) => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const { isVisible, isLoading, editBookData } = useAppSelector((state) => state.addBook);
@@ -65,7 +69,7 @@ const AddBookModal: React.FC = () => {
   const onSubmitForm = (values: any): any => {
     dispatch(setIsAddLoading(true));
     const newBook: Book = {
-      id: editBookData?.id || '',
+      id: editBookData?.id || null,
       name: values.name,
       author: values.author,
       genres: values.genres,
@@ -74,7 +78,7 @@ const AddBookModal: React.FC = () => {
       wasRead: values.wasRead,
     };
 
-    editBookData ? updateBook(newBook) : addBook(newBook);
+    editBookData ? updateBook(newBook) : addBook(newBook, mutate);
     onClose();
   };
 

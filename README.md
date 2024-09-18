@@ -13,4 +13,3 @@ Steps in order to run the app:
 - Better UI
 - Addition of images when creating/editing a book
 - Removal of explicit 'any' types
-- Better coordination of async operations: the 'add book' request is not completetd while the swr mutation is called so the changes won't instantly be reflected in the UI

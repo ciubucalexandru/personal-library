@@ -18,14 +18,16 @@ export const useBookList = () => {
   };
 };
 
-export const addBook = async (book: Book) => {
+export const addBook = async (book: Book, onOperationEnd: any) => {
   const pathKey = '/books';
-  const response = await fetcher(pathKey, HTTP_METHODS.POST, book);
+  const { id, ...bookData } = book;
+  const response = await fetcher(pathKey, HTTP_METHODS.POST, bookData);
 
+  onOperationEnd();
   return response;
 };
 
-export const deleteBook = async (bookId: string) => {
+export const deleteBook = async (bookId: number) => {
   const pathKey = `/books/${bookId}`;
   const response = await fetcher(pathKey, HTTP_METHODS.DELETE);
 
